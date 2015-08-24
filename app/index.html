@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pl">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Notes with images</title>
+        <meta name="description" content="">
+        <meta name="author" content="Jarosław Zieliński (jarek.zielin@gmail.com)">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body ng-app="notesApp">
+        <div class="container" ng-controller="notesCtrl as vm">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Notes with images</h1>
+                    <div ng-show="!vm.editMode">
+                        <div class="well">
+                            <h2>
+                                New note
+                                <small>
+                                    Type or paste a note. If your note contains some valid urls to images then images will display below your note.
+                                </small>
+                            </h2>
+                            <form name="newNoteForm" ng-submit="vm.save()">
+                                <div class="form-group">
+                                    <label for="note">Note</label>
+                                    <textarea id="note" name="note" class="form-control" placeholder="Type your note here" ng-model="vm.note"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary" ng-disabled="!vm.note.length">Add note</button>
+                            </form>
+                        </div>
+                        <h3>Notes list <span ng-hide="vm.notes.length">is empty</span></h3>
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="note in vm.notes track by $index">
+                                <div class="pull-right">
+                                    <span class="btn-icon glyphicon glyphicon-pencil" title="Edit" ng-click="vm.openEdit($index)"></span>
+                                    <span class="btn-icon glyphicon glyphicon-trash" title="Remove" ng-click="vm.remove($index)"></span>
+                                </div>
+                                <p class="list-text">{{ note }}</p>
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="image in note|images track by $index">
+                                        <a ng-href="{{ image }}" class="thumbnail">
+                                            <img ng-src="{{ image }}" alt="{{ image }}" class="img-responsive">
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="well" ng-show="vm.notes.length">
+                            <button type="button" class="btn btn-danger" ng-click="vm.clear()">Clear all list</button>
+                        </div>
+                    </div>
+                    <div ng-show="vm.editMode">
+                        <div class="well">
+                            <h2>Edit</h2>
+                            <form name="editNoteForm" ng-submit="vm.update()">
+                                <div class="form-group">
+                                    <label for="editText">Note</label>
+                                    <textarea id="editText" name="editText" class="form-control" ng-model="vm.editText"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary" ng-disabled="!vm.editText.length">Edit</button>
+                                <button type="button" class="btn btn-default" ng-click="vm.back()">Back to the list</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../bower_components/angularjs/angular.min.js"></script>
+        <script src="js/app/app.module.js"></script>
+        <script src="js/app/services/notes.factory.js"></script>
+        <script src="js/app/controllers/notesCtrl.controller.js"></script>
+        <script src="js/app/filters/images.filter.js"></script>
+    </body>
+</html>

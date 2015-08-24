@@ -1,0 +1,20 @@
+body {
+	overflow-y: scroll;
+}
+
+.btn-icon {
+	cursor: pointer;
+	color: #ddd;
+}
+
+.btn-icon:hover {
+	color: #333;
+}
+
+.btn-icon + .btn-icon {
+	margin-left: 10px;
+}
+
+.list-text {
+	margin-right: 50px;
+}
