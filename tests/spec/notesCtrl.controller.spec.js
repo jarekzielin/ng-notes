@@ -1,5 +1,6 @@
 (function(){
-  'use strict'
+  'use strict';
+
   describe('notesCtrl controller:', function () {
     var
       scope,

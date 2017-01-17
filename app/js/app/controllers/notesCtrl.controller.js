@@ -1,5 +1,5 @@
 (function(){
-  'use strict'
+  'use strict';
 
   angular
     .module('notesApp')
@@ -9,6 +9,7 @@
 
   function notesCtrl(Notes) {
 
+    /*jshint validthis: true */
     var vm = this;
 
     vm.save = save;
@@ -44,7 +45,7 @@
       }, function(){
         console.log('Failed: save error');
       });
-    };
+    }
 
     function update(){
       var note = vm.editText.trim();
@@ -61,7 +62,7 @@
       }, function(){
         console.log('Failed: update error');
       });
-    };
+    }
 
     function remove(index){
       Notes.remove(index).then(function(){
@@ -70,7 +71,7 @@
       }, function(){
         console.log('Failed: remove error');
       });
-    };
+    }
 
     function clear(){
       Notes.remove().then(function(){
@@ -79,17 +80,17 @@
       }, function(){
         console.log('Failed: clear error');
       });
-    };
+    }
 
     function openEdit(index){
       vm.editMode = !vm.editMode;
       vm.editText = vm.notes[index];
       vm.editIndex = index;
-    };
+    }
 
     function back(){
       vm.editMode = !vm.editMode;
-    };
+    }
 
-  };
+  }
 })();

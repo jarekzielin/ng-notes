@@ -1,5 +1,5 @@
 (function(){
-  'use strict'
+  'use strict';
 
   angular
     .module('notesApp')
@@ -30,7 +30,7 @@
         deferred.reject();
       }
       return deferred.promise;
-    };
+    }
 
     // Read
     function query(){
@@ -42,7 +42,7 @@
         deferred.reject();
       }
       return deferred.promise;
-    };
+    }
 
     // Update
     function update(index, note){
@@ -56,7 +56,7 @@
         deferred.reject();
       }
       return deferred.promise;
-    };
+    }
 
     // Delete
     function remove(index){
@@ -74,18 +74,18 @@
         deferred.reject();
       }
       return deferred.promise;
-    };
+    }
 
     //
 
     function allNotes(){
       var ls = localStorage.getItem('notes');
       return (ls !== undefined && ls !== null) ? JSON.parse(ls) : [];
-    };
+    }
 
     function updateLocalStorage(notes){
       localStorage.setItem('notes', JSON.stringify(notes));
-    };
-  };
+    }
+  }
 
 })();

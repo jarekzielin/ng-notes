@@ -1,5 +1,5 @@
 (function(){
-  'use strict'
+  'use strict';
 
   angular
     .module('notesApp')
@@ -21,9 +21,9 @@
         if(imgFile.match(regexImg)) {
           imgURLArray.push(imgURL);
         }
-      };
+      }
 
       return imgURLArray;
-    }
-  };
+    };
+  }
 })();
